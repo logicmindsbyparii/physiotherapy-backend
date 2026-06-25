@@ -7,7 +7,7 @@ require('dotenv').config();
 const { pool, initDb } = require('./db-sqlite');
 
 const app = express();
-app.use(cors({ origin: (o, cb) => (!o || o.startsWith('http://localhost:')) ? cb(null, true) : cb(new Error('Not allowed')), credentials: true }));
+app.use(cors({ origin: true, credentials: true })); // Allow all origins for Vercel compatibility
 app.use(express.json({ limit: '10mb' }));
 
 const JWT_SECRET = process.env.JWT_SECRET || 'your-secret-key-change-this';
